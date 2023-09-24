@@ -1,14 +1,22 @@
+// VendorOrderTracker.Tests/ModelTests/VendorTests.cs
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-// VendorOrderTracker/Models/Vendor.cs
-using System.Collections.Generic;
+using VendorOrderTracker.Models;
 
-namespace VendorOrderTracker.Models
+namespace VendorOrderTracker.Tests.ModelTests
 {
-  public class Vendor
-  {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public List<Order> Orders { get; set; } = new List<Order>();
-  }
+    [TestClass]
+    public class VendorTests
+    {
+        [TestMethod]
+        public void VendorConstructor_CreatesInstanceOfVendor_Vendor()
+        {
+            // Arrange, Act
+            Vendor newVendor = new Vendor();
+
+            // Assert
+            Assert.AreEqual(typeof(Vendor), newVendor.GetType());
+        }
+
+        // Add more test methods for Vendor class as needed.
+    }
 }
