@@ -1,4 +1,3 @@
-// VendorOrderTracker.Tests/ModelTests/VendorTests.cs
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendorOrderTracker.Models;
 

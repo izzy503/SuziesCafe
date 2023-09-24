@@ -1,4 +1,3 @@
-// VendorOrderTracker/Controllers/HomeController.cs
 using Microsoft.AspNetCore.Mvc;
 
 namespace VendorOrderTracker.Controllers

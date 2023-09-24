@@ -1,32 +1,34 @@
+using Microsoft.AspNetCore.Mvc;
+using VendorOrderTracker.Models;
 using System.Collections.Generic;
 
-namespace ToDoList.Models
+namespace VendorOrderTracker.Controllers
 {
-  public class Item
+  public class VendorsController : Controller
   {
-    public string Description { get; set; }
-    public int Id { get; }
-    private static List<Item> _instances = new List<Item> { };
+    private static List<Vendor> _vendors = new List<Vendor>();
 
-    public Item(string description)
+    public IActionResult Index()
     {
-      Description = description;
-      _instances.Add(this);
-      Id = _instances.Count;
+      // Display a list of vendors
+      return View(_vendors);
     }
 
-    public static List<Item> GetAll()
+    [HttpGet]
+    public IActionResult Create()
     {
-      return _instances;
+      // Display the form to create a new vendor
+      return View();
     }
 
-    public static void ClearAll()
+    [HttpPost]
+    public IActionResult Create(Vendor vendor)
     {
-      _instances.Clear();
+      // Create a new vendor and add it to the list
+      _vendors.Add(vendor);
+      return RedirectToAction("Index");
     }
-    public static Item Find(int searchId)
-    {
-      return _instances[searchId - 1];
-    }
+
+    // Add actions for displaying vendor details, creating orders, and managing orders.
   }
 }
