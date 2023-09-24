@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VendorOrderTracker.Controllers
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
+  {
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            // Display the splash page
-            return View();
-        }
+      // Display the splash page
+      return View();
+
     }
+  }
 }
