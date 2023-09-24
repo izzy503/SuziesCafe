@@ -1,15 +1,14 @@
+// VendorOrderTracker/Controllers/HomeController.cs
 using Microsoft.AspNetCore.Mvc;
 
-namespace ToDoList.Controllers
+namespace VendorOrderTracker.Controllers
 {
-  public class HomeController : Controller
-  {
-
-    [HttpGet("/")]
-    public ActionResult Index()
+    public class HomeController : Controller
     {
-      return View();
+        public IActionResult Index()
+        {
+            // Display the splash page
+            return View();
+        }
     }
-
-  }
 }

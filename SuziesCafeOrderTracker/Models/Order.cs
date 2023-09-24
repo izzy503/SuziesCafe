@@ -1,20 +1,15 @@
-using System.Collections.Generic;
+using System;
 
-namespace ToDoList.Models
+namespace VendorOrderTracker.Models
 {
-  public class Category
-  {
-    private static List<Category> _instances = new List<Category> { };
-    public string Name { get; set; }
-    public int Id { get; }
-    public List<Item> Items { get; set; }
-
-    public Category(string categoryName)
+    public class Order
     {
-      Name = categoryName;
-      _instances.Add(this);
-      Id = _instances.Count;
-      Items = new List<Item> { };
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public DateTime Date { get; set; }
+        public int VendorId { get; set; }
+        public Vendor Vendor { get; set; }
     }
-  }
 }
