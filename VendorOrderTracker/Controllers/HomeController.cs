@@ -4,6 +4,7 @@ namespace VendorOrderTracker.Controllers
 {
   public class HomeController : Controller
   {
+    [HttpGet("/")]
     public IActionResult Index()
     {
       // Display the splash page
