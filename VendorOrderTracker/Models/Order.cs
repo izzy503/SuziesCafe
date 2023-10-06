@@ -1,24 +1,44 @@
+using System.Collections.Generic;
 using System;
+using System.Linq; // You need this using directive for FirstOrDefault
 
 namespace VendorOrderTracker.Models
 {
   public class Order
   {
-    private static List<Order> _instances = new List<Order> { };
+    private static List<Order> _instances = new List<Order>();
+
     public int Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public decimal Price { get; set; }
     public DateTime Date { get; set; }
 
-    // These aren't required so I'd start without them and add later if you decide you want them
-    // public int VendorId { get; set; }
-    // public Vendor Vendor { get; set; }
+    // Constructor
+    public Order(string title, string description, decimal price, DateTime date)
+    {
+      Title = title;
+      Description = description;
+      Price = price;
+      Date = date;
+    }
 
-    // create constructor
-    // create ClearAll() method
-    // create GetAll() method
-    // create Find() method
-    // Be sure to create tests for each of the above
+    // Method to clear all orders
+    public static void ClearAll()
+    {
+      _instances.Clear();
+    }
+
+    // Method to get all orders
+    public static List<Order> GetAll()
+    {
+      return _instances;
+    }
+
+    // Method to find an order by Id
+    public static Order Find(int id)
+    {
+      return _instances.FirstOrDefault(order => order.Id == id);
+    }
   }
 }
