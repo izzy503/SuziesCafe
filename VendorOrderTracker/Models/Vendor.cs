@@ -16,6 +16,8 @@ namespace VendorOrderTracker.Models
         {
             Name = name;
             Description = description;
+            _instances.Add(this);
+            Id = _instances.Count;
         }
 
         // Method to clear all vendors

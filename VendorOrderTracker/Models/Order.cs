@@ -21,6 +21,8 @@ namespace VendorOrderTracker.Models
       Description = description;
       Price = price;
       Date = date;
+      _instances.Add(this);
+      Id = _instances.Count;
     }
 
     // Method to clear all orders
@@ -38,7 +40,7 @@ namespace VendorOrderTracker.Models
     // Method to find an order by Id
     public static Order Find(int id)
     {
-      return _instances.FirstOrDefault(order => order.Id == id);
+      return _instances[id - 1];
     }
   }
 }

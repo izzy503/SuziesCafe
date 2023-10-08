@@ -11,11 +11,17 @@ namespace VendorOrderTracker.Tests.ModelTests
     [TestMethod]
     public void OrderConstructor_CreatesInstanceOfOrder_Order()
     {
-      // Arrange, Act
-      Order newOrder = new Order();
+      // Arrange
+      string title = "Test Order";
+      string description = "Test Description";
+      decimal price = 10.99m;
+      DateTime date = DateTime.Now;
+
+      // Act
+      Order testOrder = new Order(title, description, price, date);
 
       // Assert
-      Assert.AreEqual(typeof(Order), newOrder.GetType());
+      Assert.AreEqual(typeof(Order), testOrder.GetType());
     }
 
     [TestMethod]
