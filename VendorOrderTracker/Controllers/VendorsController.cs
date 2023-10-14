@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using VendorOrderTracker.Models;
+using VendorOrderTracker.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VendorOrderTracker.Controllers
 {
@@ -8,27 +10,78 @@ namespace VendorOrderTracker.Controllers
   {
     private static List<Vendor> _vendors = new List<Vendor>();
 
-    public IActionResult Index()
+    // ... Existing code ...
+
+    // GET: Vendors/Details/5
+    public IActionResult Details(int id)
     {
-      // Display a list of vendors
-      return View(_vendors);
+      Vendor vendor = _vendors.FirstOrDefault(v => v.Id == id);
+      if (vendor == null)
+      {
+        return NotFound();
+      }
+
+      // Fetch orders for the selected vendor
+      List<Order> vendorOrders = GetVendorOrders(vendor.Id);
+
+      var vendorDetailsViewModel = new VendorDetailsViewModel
+      {
+        Vendor = vendor,
+        Orders = vendorOrders
+      };
+
+      return View(vendorDetailsViewModel);
     }
 
-    [HttpGet]
-    public IActionResult Create()
+    // GET: Vendors/CreateOrder/5
+    public IActionResult CreateOrder(int id)
     {
-      // Display the form to create a new vendor
-      return View();
+      Vendor vendor = _vendors.FirstOrDefault(v => v.Id == id);
+      if (vendor == null)
+      {
+        return NotFound();
+      }
+
+      var orderViewModel = new OrderViewModel
+      {
+        VendorId = vendor.Id,
+        VendorName = vendor.Name,
+        OrderDate = DateTime.Today
+      };
+
+      return View(orderViewModel);
     }
 
+    // POST: Vendors/CreateOrder/5
     [HttpPost]
-    public IActionResult Create(Vendor vendor)
+    public IActionResult CreateOrder(OrderViewModel orderViewModel)
     {
-      // Create a new vendor and add it to the list
-      _vendors.Add(vendor);
-      return RedirectToAction("Index");
+      if (ModelState.IsValid)
+      {
+        Order newOrder = new Order
+        {
+          VendorId = orderViewModel.VendorId,
+          Title = orderViewModel.Title,
+          Description = orderViewModel.Description,
+          Price = orderViewModel.Price,
+          Date = orderViewModel.OrderDate
+        };
+
+
+
+        return RedirectToAction("Details", new { id = orderViewModel.VendorId });
+      }
+
+      return View(orderViewModel);
     }
 
-    // Add actions for displaying vendor details, creating orders, and managing orders.
+    // Additional actions for managing orders, editing vendors, etc.
+
+    // Helper method to get orders for a specific vendor
+    private List<Order> GetVendorOrders(int vendorId)
+    {
+      // Replace with actual logic to fetch orders from your data source
+      // Example: return _orderRepository.GetOrdersForVendor(vendorId);
+    }
   }
 }
