@@ -11,22 +11,22 @@ namespace VendorOrderTracker.Controllers
 
     public ActionResult Index()
     {
-      // List<Order> orders = Order.GetAllOrders();
+      List<Order> orders = Order.GetAll();
       return View();
     }
 
-    // GET: Order/Details/5
+    //GET: Order/Details/5
     public ActionResult Details(int id)
     {
       Order order = Order.Find(id);
       return View(order);
     }
 
-    // GET: Order/Create
+    //GET: Order/Create
     public ActionResult Create(int vendorId)
     {
-      // Vendor vendor = _vendorRepository.GetVendorById(vendorId);
-     
+      Vendor vendor = Vendor.Find(vendorId);
+
       return View();
     }
 
@@ -36,20 +36,20 @@ namespace VendorOrderTracker.Controllers
       return View();
     }
 
-    // GET: Order/Edit/5
-    public ActionResult Edit(int id)
+    //GET: Order/Edit/5
+     public ActionResult Edit(int id)
     {
       return View();
     }
 
-    // POST: Order/Edit/5
-    public ActionResult Edit(int id, Order order)
+    //POST: Order/Edit/5
+     public ActionResult Edit(int id, Order order)
     {
       return View();
     }
 
-    // GET: Order/Delete/5
-    public ActionResult Delete(int id)
+    //GET: Order/Delete/5
+     public ActionResult Delete(int id)
     {
       return View();
     }

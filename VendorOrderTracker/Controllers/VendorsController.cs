@@ -13,17 +13,26 @@ namespace VendorOrderTracker.Controllers
       List<Vendor> vendorList = Vendor.GetAll();
       return View(vendorList);
     }
-    public ActionResult Details(int id)
-    {  
-      // List<Order> vendorOrders = GetVendorOrders(vendor.Id);
 
+    [HttpPost("/vendors")]
+    public ActionResult Create(string name, string description)
+    {  
+      Vendor newVendor = new Vendor(name, description);
+
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet("vendors/create")]
+    public ActionResult Create()
+    {
       return View();
     }
 
-    [HttpGet("vendors/new")]
-    public ActionResult New()
+    [HttpGet("/vendors/{id}")]
+    public ActionResult Details(int id)
     {
-      return View();
+      Vendor vendor = Vendor.Find(id);
+      return View(vendor);
     }
 
     // GET: Vendors/CreateOrder/5

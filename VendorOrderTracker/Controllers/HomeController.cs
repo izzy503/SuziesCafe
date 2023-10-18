@@ -9,9 +9,10 @@ namespace VendorOrderTracker.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-      // Display the splash page
+
       return View();
 
     }
+
   }
 }

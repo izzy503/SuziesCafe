@@ -8,12 +8,10 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
+@using VendorOrderTracker.Models;
+
 <body>
-  <form action="/items" method="post">
-    <label for="description">Add a new item</label>
-    <input id="description" name="description" type="text">
-    <button type="submit">Submit</button>
-  </form>
+  <p>Vendor Name: @Model.Name</p>
 </body>
 
 </html>
