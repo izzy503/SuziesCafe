@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System;
-using System.Linq; // You need this using directive for FirstOrDefault
 
 namespace VendorOrderTracker.Models
 {
@@ -12,10 +11,10 @@ namespace VendorOrderTracker.Models
     public string Title { get; set; }
     public string Description { get; set; }
     public decimal Price { get; set; }
-    public DateTime Date { get; set; }
+    public string Date { get; set; }
 
     // Constructor
-    public Order(string title, string description, decimal price, DateTime date)
+    public Order(string title, string description, decimal price, string date)
     {
       Title = title;
       Description = description;

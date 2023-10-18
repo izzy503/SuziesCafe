@@ -2,123 +2,60 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using VendorOrderTracker.Models;
-using VendorOrderTracker.ViewModels;
+
 
 namespace VendorOrderTracker.Controllers
 {
   public class OrderController : Controller
   {
-    // database context (dependency injection) should be injected here
 
-    // GET: Order
-    public IActionResult Index()
+    public ActionResult Index()
     {
-      List<Order> orders = _orderRepository.GetAllOrders();
-      return View(orders);
+      // List<Order> orders = Order.GetAllOrders();
+      return View();
     }
 
     // GET: Order/Details/5
-    public IActionResult Details(int id)
+    public ActionResult Details(int id)
     {
-      Order order = _orderRepository.GetOrderById(id);
-      if (order == null)
-      {
-        return NotFound();
-      }
+      Order order = Order.Find(id);
       return View(order);
     }
 
     // GET: Order/Create
-    public IActionResult Create(int vendorId)
+    public ActionResult Create(int vendorId)
     {
-      Vendor vendor = _vendorRepository.GetVendorById(vendorId);
-      if (vendor == null)
-      {
-        return NotFound();
-      }
-
-      var orderViewModel = new OrderViewModel
-      {
-        VendorId = vendor.Id,
-        VendorName = vendor.Name,
-        OrderDate = DateTime.Today
-      };
-
-      return View(orderViewModel);
+      // Vendor vendor = _vendorRepository.GetVendorById(vendorId);
+     
+      return View();
     }
 
-    // POST: Order/Create
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Create(OrderViewModel orderViewModel)
-    {
-      if (ModelState.IsValid)
-      {
-        Order newOrder = new Order
-        {
-          VendorId = orderViewModel.VendorId,
-          Title = orderViewModel.Title,
-          Description = orderViewModel.Description,
-          Price = orderViewModel.Price,
-          Date = orderViewModel.OrderDate
-        };
 
-        _orderRepository.AddOrder(newOrder);
-        return RedirectToAction("Index");
-      }
-      return View(orderViewModel);
+    public ActionResult Create()
+    {
+      return View();
     }
 
     // GET: Order/Edit/5
-    public IActionResult Edit(int id)
+    public ActionResult Edit(int id)
     {
-      Order order = _orderRepository.GetOrderById(id);
-      if (order == null)
-      {
-        return NotFound();
-      }
-      return View(order);
+      return View();
     }
 
     // POST: Order/Edit/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, Order order)
+    public ActionResult Edit(int id, Order order)
     {
-      if (id != order.Id)
-      {
-        return NotFound();
-      }
-
-      if (ModelState.IsValid)
-      {
-        _orderRepository.UpdateOrder(order);
-        return RedirectToAction("Index");
-      }
-      return View(order);
+      return View();
     }
 
     // GET: Order/Delete/5
-    public IActionResult Delete(int id)
+    public ActionResult Delete(int id)
     {
-      Order order = _orderRepository.GetOrderById(id);
-      if (order == null)
-      {
-        return NotFound();
-      }
-      return View(order);
+      return View();
     }
 
-    // POST: Order/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public IActionResult DeleteConfirmed(int id)
+    public ActionResult DeleteConfirmed(int id)
     {
-      Order order = _orderRepository.GetOrderById(id);
-      if (order != null)
-      {
-        _orderRepository.DeleteOrder(order);
-      }
       return RedirectToAction("Index");
     }
   }
