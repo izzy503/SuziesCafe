@@ -82,7 +82,7 @@ namespace VendorOrderTracker.Tests.ModelTests
       // Arrange
       Vendor.ClearAll();
       Vendor vendor = new Vendor("Vendor 1", "Description 1");
-      Order order = new Order("Order 1", "Order Description", 10.99m, DateTime.Now);
+      Order order = new Order("Order 1", "Order Description", 10.99m, "11/4/2023");
 
       // Act
       vendor.AddOrder(order);

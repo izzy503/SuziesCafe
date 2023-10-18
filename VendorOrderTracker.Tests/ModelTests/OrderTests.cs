@@ -15,7 +15,7 @@ namespace VendorOrderTracker.Tests.ModelTests
       string title = "Test Order";
       string description = "Test Description";
       decimal price = 10.99m;
-      DateTime date = DateTime.Now;
+      string date = "11/4/2023";
 
       // Act
       Order testOrder = new Order(title, description, price, date);
@@ -31,7 +31,7 @@ namespace VendorOrderTracker.Tests.ModelTests
       string title = "Test Order";
       string description = "Test Description";
       decimal price = 10.99m;
-      DateTime date = DateTime.Now;
+      string date = "11/4/2023";
 
       // Act
       Order testOrder = new Order(title, description, price, date);
@@ -61,8 +61,8 @@ namespace VendorOrderTracker.Tests.ModelTests
     {
       // Arrange
       Order.ClearAll();
-      Order order1 = new Order("Order 1", "Description 1", 10.99m, DateTime.Now);
-      Order order2 = new Order("Order 2", "Description 2", 19.99m, DateTime.Now);
+      Order order1 = new Order("Order 1", "Description 1", 10.99m, "11/4/2023");
+      Order order2 = new Order("Order 2", "Description 2", 19.99m, "11/4/2023");
 
       // Act
       List<Order> result = Order.GetAll();
@@ -76,8 +76,8 @@ namespace VendorOrderTracker.Tests.ModelTests
     {
       // Arrange
       Order.ClearAll();
-      Order order1 = new Order("Order 1", "Description 1", 10.99m, DateTime.Now);
-      Order order2 = new Order("Order 2", "Description 2", 19.99m, DateTime.Now);
+      Order order1 = new Order("Order 1", "Description 1", 10.99m, "11/4/2023");
+      Order order2 = new Order("Order 2", "Description 2", 19.99m, "11/4/2023");
 
       // Act
       Order result = Order.Find(order2.Id);

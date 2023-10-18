@@ -42,7 +42,6 @@ Project Structure
 Controllers: Contains controller classes for handling HTTP requests.
 Models: Contains the Vendor and Order classes.
 Views: Contains Razor views for rendering HTML.
-Startup.cs: Configures the application and sets up middleware.
 Program.cs: Defines the application entry point.
 VendorOrderTracker.csproj: Project file.
 VendorOrderTracker.Tests: Unit tests for models and controllers.
