@@ -79,8 +79,7 @@ cd path/to/YourProject
 **Step 3: Run the Tests**
 
 To run the tests for your project, use the following command:
-bash
-Copy code
+
 dotnet test
 
 **Step 4: Review Test Results**

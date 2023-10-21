@@ -14,13 +14,6 @@ namespace VendorOrderTracker.Controllers
       return View(vendorList);
     }
 
-    [HttpPost("/vendors")]
-    public ActionResult Create(string name, string description)
-    {  
-      Vendor newVendor = new Vendor(name, description);
-
-      return RedirectToAction("Index");
-    }
 
     [HttpGet("vendors/create")]
     public ActionResult Create()
@@ -28,24 +21,38 @@ namespace VendorOrderTracker.Controllers
       return View();
     }
 
-    [HttpGet("/vendors/{id}")]
+
+    [HttpPost("/vendors")]
+    public ActionResult Create(string name, string description)
+    {
+      Vendor newVendor = new Vendor(name, description);
+
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet("/vendors/{id}/orders")]
     public ActionResult Details(int id)
     {
+      Dictionary<string, object> model = new Dictionary<string, object>();
       Vendor vendor = Vendor.Find(id);
-      return View(vendor);
+      List<Order> orders = vendor.OrdersList;
+      model.Add("vendor", vendor);
+      model.Add("orders", orders);
+      return View(model);
     }
 
-    // GET: Vendors/CreateOrder/5
-    public ActionResult CreateOrder(int id)
-    {  
-      return View();
-    }
-
-    // POST: Vendors/CreateOrder/5
-    [HttpPost]
-    public ActionResult CreateOrder()
+    [HttpPost("/vendors/{id}/orders")]
+    public ActionResult Create(int Id, string orderTitle, string orderDesc, decimal orderPrice)
     {
-      return View();
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Vendor vendor = Vendor.Find(Id);
+      Order newOrder = new Order(orderTitle, orderDesc, orderPrice);
+
+      vendor.AddOrder(newOrder);
+      List<Order> orders = vendor.OrdersList;
+      model.Add("orders", orders);
+      model.Add("vendor", vendor);
+      return View("Details", model);
     }
   }
 }

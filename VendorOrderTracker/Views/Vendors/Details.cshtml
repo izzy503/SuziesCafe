@@ -11,7 +11,21 @@
 @using VendorOrderTracker.Models;
 
 <body>
-  <p>Vendor Name: @Model.Name</p>
+  <h3>Vendor Name: @Model["vendor"].Name</h3>
+  @foreach (Order order in @Model["orders"])
+  {
+    <div class="container">
+      <ul>
+        <li><strong>@order.Title Details:</strong></li>
+        <ul>
+          <li>Description: @order.Description</li>
+          <li>Price: $@order.Price.ToString("F2")</li>
+        </ul>
+      </ul>
+    </div>
+  }
+
+  <a href='/vendors/@Model["vendor"].Id/orders/new'>Add a new Order</a>
 </body>
 
 </html>

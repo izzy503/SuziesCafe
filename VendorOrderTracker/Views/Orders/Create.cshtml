@@ -1,34 +1,25 @@
-@page
-@model VendorOrderTracker.Models.Order
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div class="container">
+        <h1>Add a new order under @Model.Name's name</h1>
+        </div>
 
-<h2>Create Order</h2>
+        <form action="/vendors/@Model.Id/orders" method="post">
+        <input id="Id" name="Id" type="hidden" value="@Model.Id">
+        
+        <label for="orderTitle">Order Title</label>
+        <input id="orderTitle" name="orderTitle" type="text">
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="Title" class="control-label"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price" class="control-label"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Date" class="control-label"></label>
-        <input asp-for="Date" class="form-control" />
-        <span asp-validation-for="Date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form>
+        <label for="orderDesc">Order Description</label>
+        <input id="orderDesc" name="orderDesc" type="text">
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+        <label for="orderPrice">Order Price</label>
+        <input id="orderPrice" name="orderPrice" type="number" step=".01">
+
+        <button type='submit'>Add Order</button>
+        </form>
+    </body>
+</html>
